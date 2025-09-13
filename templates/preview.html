@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <div class="form-container">
+        <h2>Registration Details Preview</h2>
+        {% if form_data %}
+            <table border="1" cellpadding="8" cellspacing="0">
+  <tr>
+    <th>Field</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td>{{ form_data.name }}</td>
+  </tr>
+  <tr>
+    <td><strong>Gender</strong></td>
+    <td>{{ form_data.gender }}</td>
+  </tr>
+  <tr>
+    <td><strong>Date of Birth</strong></td>
+    <td>{{ form_data.dob }}</td>
+  </tr>
+  <tr>
+    <td><strong>Username</strong></td>
+    <td>{{ form_data.username }}</td>
+  </tr>
+  <tr>
+    <td><strong>Password</strong></td>
+    <td>{{ form_data.password }}</td>
+  </tr>
+  <tr>
+    <td><strong>Address</strong></td>
+    <td>{{ form_data.address }}</td>
+  </tr>
+  <tr>
+    <td><strong>Blood Group</strong></td>
+    <td>{{ form_data.blood_group }}</td>
+  </tr>
+</table>
+        {% else %}
+            <p>No data to display. Please go back and fill the form.</p>
+        {% endif %}
+    </div>
+{% endblock%}

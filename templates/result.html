@@ -1,0 +1,70 @@
+
+
+    {% extends 'base.html' %}
+    {% block content %}
+    <title>Marksheet</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        table, th, td { border: 1px solid #800000; }
+        th, td { padding: 8px; text-align: center; }
+        h2, h3 { text-align: center; color: #800000; margin: 5px; }
+        .info { margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Board of Secondary Education Madhya Pradesh</h2>
+    <h3>Result: High School Marksheet </h3>
+    <h3>Detailed Mark Sheet</h3>
+
+    <table>
+        <tr>
+            <td><b>Roll No.</b> {{ roll_no }}</td>
+            <td><b>School</b> {{ school }}</td>
+            <td><b>Year</b> {{ year }}</td>
+        </tr>
+        <tr>
+            <td><b>Examinee Name:</b> {{ name }}</td>
+            <td><b>Mother's Name:</b> {{ mother }}</td>
+            <td><b>Father's Name:</b> {{ father }}</td>
+        </tr>
+        <tr>
+            <td><b>Gender:</b> {{ gender }}</td>
+            <td><b>Date of Birth:</b> {{ dob }}</td>
+            <td><b>Medium:</b> {{ medium }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th rowspan="2">Subject</th>
+            <th colspan="2">Marks Obtained</th>
+            <th rowspan="2">PR</th>
+            <th rowspan="2">TOTAL</th>
+        </tr>
+        <tr>
+            <th>TH</th>
+            <th>SS</th>
+        </tr>
+
+        {% for sub in subjects %}
+        <tr>
+            <td>{{ sub.name }}</td>
+            <td>{{ sub.th }}</td>
+            <td>{{ sub.ss }}</td>
+            <td>{{ sub.pr }}</td>
+            <td>{{ sub.th|add:sub.ss|add:sub.pr }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="4" ><b>Total:</b></td>
+            <td><b>{{ total }}</b></td>
+        </tr>
+    </table>
+    <br>
+    <p><b>Total marks obtain:</b> {{ total }}</p>
+    <br>
+    <p><b>Percentage:</b> {{ percentage }}%</p>
+    <h3>Result: {{ result }}</h3>
+</body>
+{% endblock %}

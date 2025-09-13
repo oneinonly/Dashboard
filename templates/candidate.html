@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+    {% block content %}
+<div>
+    <table>
+        <h1>Candidate Information</h1>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Age:</strong> {{ age }}</p>
+
+    <h3>Skills:</h3>
+    <ul>
+        {% for skill in skills %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+       <table>
+           <tr>
+               <th>Skill</th>
+           </tr>
+           {% for skill in skills %}
+           <tr>
+               <td>{{ skill }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+</div>
+{% endblock %}

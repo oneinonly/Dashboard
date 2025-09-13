@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<h1>Welcome to Home  Page</h1>
+
+{% load static %}
+
+    <h2>Resume Submission</h2>
+    <form method="post" action="/resume/">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name"><br><br>
+
+        <label for="role">Role:</label><br>
+        <input type="text" name="role" id="role"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" id="email"><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="text" name="phone" id="phone"><br><br>
+
+        <label>Skills:</label><br>
+        <input type="checkbox" name="skills" value="Python"> Python<br>
+        <input type="checkbox" name="skills" value="Django"> Django<br>
+        <input type="checkbox" name="skills" value="React"> React<br>
+        <input type="checkbox" name="skills" value="SQL"> SQL<br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h2>Submitted Resume Details</h2>
+    <p>Name: {{ name }}</p>
+    <p>Role: {{ role }}</p>
+    <p>Email: {{ email }}</p>
+    <p>Phone: {{ phone }}</p>
+    <p>Skills: {{ skills|join:", " }}</p>
+    
+    
+{% endblock%}

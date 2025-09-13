@@ -1,0 +1,122 @@
+
+
+    {% extends 'base.html' %}
+    {% block content %}
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet Data Entry</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 20px; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; color: #333; }
+        form { display: grid; grid-gap: 15px; }
+        .form-section { border: 1px solid #ddd; padding: 15px; border-radius: 5px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-gap: 15px; }
+        label { font-weight: bold; margin-bottom: 5px; display: block; }
+        input[type="text"], input[type="number"], input[type="date"], select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: center; padding: 8px; border: 1px solid #ddd; }
+        th { background-color: #f2f2f2; }
+        button { background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; }
+        button:hover { background-color: #45a049; }
+        .total-display { font-weight: bold; text-align: right; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>High School Marksheet Entry</h1>
+        <form action='/display_marksheet/' method="post">
+            {% csrf_token %}
+
+            <div class="form-section">
+                <h2>Student Information</h2>
+                <div class="form-grid">
+                    <div><label for="roll_no">Roll No:</label><input type="text" id="roll_no" name="roll_no" value=" " required></div>
+                    <div><label for="examinee_name">Examinee Name:</label><input type="text" id="examinee_name" name="examinee_name" value=" " required></div>
+                    <div><label for="gender">Gender:</label><input type="text" id="gender" name="gender" value="" required></div>
+                    <div><label for="school">School:</label><input type="text" id="school" name="school" value=" " required></div>
+                    <div><label for="mother_name">Mother's Name:</label><input type="text" id="mother_name" name="mother_name" value=" " required></div>
+                    <div><label for="father_name">Father's Name:</label><input type="text" id="father_name" name="father_name" value=" " required></div>
+                    <div><label for="date_of_birth">Date of Birth:</label><input type="date" id="date_of_birth" name="date_of_birth" value=" " required></div>
+                    <div><label for="year">Year:</label><input type="number" id="year" name="year" value=" " required></div>
+                    <div><label for="medium">Medium:</label><input type="text" id="medium" name="medium" value=" " required></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Marks Obtained</h2>
+                <table>
+                    <thead>
+                        <tr><th>Subject</th><th>Theory (TH)</th><th>Sessional (SS)</th><th>Total</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HINDI</td>
+                            <td><input type="number" name="hindi_th" id="hindi_th" min="0" max="80" value="" required oninput="calculateTotals()"></td>
+                            <td><input type="number" name="hindi_ss" id="hindi_ss" min="0" max="20" value="" required oninput="calculateTotals()"></td>
+                            <td id="hindi_total">88</td>
+                        </tr>
+                        <tr>
+                            <td>ENGLISH</td>
+                            <td><input type="number" name="english_th" id="english_th" min="0" max="80" value="" required oninput="calculateTotals()"></td>
+                            <td><input type="number" name="english_ss" id="english_ss" min="0" max="20" value="" required oninput="calculateTotals()"></td>
+                            <td id="english_total">78</td>
+                        </tr>
+                        <tr>
+                            <td>SCIENCE</td>
+                            <td><input type="number" name="science_th" id="science_th" min="0" max="80" value="" required oninput="calculateTotals()"></td>
+                            <td><input type="number" name="science_ss" id="science_ss" min="0" max="20" value="" required oninput="calculateTotals()"></td>
+                            <td id="science_total">83</td>
+                        </tr>
+                         <tr>
+                            <td>SOC. SCIENCE</td>
+                            <td><input type="number" name="soc_science_th" id="soc_science_th" min="0" max="80" value="" required oninput="calculateTotals()"></td>
+                            <td><input type="number" name="soc_science_ss" id="soc_science_ss" min="0" max="20" value="" required oninput="calculateTotals()"></td>
+                            <td id="soc_science_total">86</td>
+                        </tr>
+                        <tr>
+                            <td>MATHEMATICS</td>
+                            <td><input type="number" name="mathematics_th" id="mathematics_th" min="0" max="80" value="" required oninput="calculateTotals()"></td>
+                            <td><input type="number" name="mathematics_ss" id="mathematics_ss" min="0" max="20" value="" required oninput="calculateTotals()"></td>
+                            <td id="mathematics_total">82</td>
+                        </tr>
+                        <tr>
+                            <td>SANSKRIT</td>
+                            <td><input type="number" name="sanskrit_th" id="sanskrit_th" min="0" max="80" value="" required oninput="calculateTotals()"></td>
+                            <td><input type="number" name="sanskrit_ss" id="sanskrit_ss" min="0" max="20" value="" required oninput="calculateTotals()"></td>
+                            <td id="sanskrit_total">82</td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <div class="total-display">
+                    Grand Total: <span id="grand_total">499</span> | Percentage: <span id="percentage">83.17%</span>
+                </div>
+            </div>
+
+            <button type="submit">Generate Marksheet</button>
+        </form>
+    </div>
+
+    <script>
+        function calculateTotals() {
+            const subjects = ['hindi', 'english', 'science', 'soc_science', 'mathematics', 'sanskrit'];
+            let grandTotal = 0;
+
+            subjects.forEach(subject => {
+                const th = parseInt(document.getElementById(`${subject}_th`).value) || 0;
+                const ss = parseInt(document.getElementById(`${subject}_ss`).value) || 0;
+                const total = th + ss;
+                document.getElementById(`${subject}_total`).innerText = total;
+                grandTotal += total;
+            });
+
+            const percentage = ((grandTotal / 600) * 100).toFixed(2);
+            document.getElementById('grand_total').innerText = grandTotal;
+            document.getElementById('percentage').innerText = `${percentage}%`;
+        }
+        // Run once on page load to calculate initial values
+        window.onload = calculateTotals;
+    </script>
+
+
+    {% endblock %}

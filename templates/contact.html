@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div id="contact">
+    <h1>Welcome to contact page</h1>
+
+    {{ att }}
+
+    <h2>My name is {{ name|upper }} and profile is {{ profile|lower }}</h2>
+    <h2>Salary is {{ Salary|default:"565656" }} and department is {{ department|capfirst }}</h2>
+
+    <h3>Attendance :
+        {% for x in att %}
+            <h1>{{ x }}</h1>
+        {% endfor %}
+    </h3>
+
+    <p>{{ desc|truncatechars:14 }}</p>
+
+    {% for x in att %}
+        <h2>{{ x }}</h2>
+    {% endfor %}
+</div>
+{% endblock %}

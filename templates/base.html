@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'CSS/base.css'%}">
+    <script src="{% static 'JS/base.js'%}"></script>
+</head>
+<header>
+{% block header %}
+
+{% endblock %} 
+</header> 
+<body>
+    <!-- Navabe Start -->
+    <nav>
+        <ul>
+            <a href='/'><li>Home</li></a>
+            <a href='/nav'><li>Nav</li></a>
+            <a href='/registration'><li>registration</li></a>
+            <a href='/index'><li>Index_deshboard</li></a>
+            <a href='/about'><li>About</li></a>
+            <a href='/contact'><li>Contact</li></a>
+            <a href='/candidate'><li>Candidate</li></a>
+            <a href='/result'><li>Result</li></a> 
+            <a href='/admitcard'><li>Admitcard</li></a>
+            <a href='/resume'><li>Resume</li></a>
+            <a href='/post'><li>Post</li></a>
+            <a href='/marksheet_form'><li>Marksheet Data</li></a>
+            <a href='/display_marksheet'><li>Display Marksheet</li></a>
+            
+        </ul>
+    </nav>
+    <!-- Navabe End -->
+
+{% block content %}
+
+{% endblock %} 
+
+    <!-- Footer Start -->
+     <footer>Before printing Marksheet kindly adjust your printer/browser settings to normal A4 size printing settings.
+Also kindly remove "Footer & header" text from "Page Setup" option of printer/browser for better results.
+Please Use Internet Explore for best Result.
+
+IMPORTANT NOTE-: If Your Payment Done and Marksheet not Generated, Please Apply Again
+from here(No Extra Charge will be taken) OR Generate Marksheet from Duplicate Receipt.
+</footer>
+</body>
+</html>
